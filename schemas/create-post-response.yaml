@@ -1,0 +1,18 @@
+type: object
+required: [id, userId, title, body]
+properties:
+  id:
+    type: integer
+    minimum: 1
+    example: 101
+  userId:
+    type: integer
+    minimum: 1
+    example: 1
+  title:
+    type: string
+    example: sunt aut facere repellat provident
+  body:
+    type: string
+    example: quia et suscipit suscipit recusandae
+additionalProperties: false

@@ -1,0 +1,179 @@
+type: object
+required: [users, total, skip, limit]
+properties:
+  users:
+    type: array
+    items:
+      type: object
+      required:
+        - id
+        - firstName
+        - lastName
+        - maidenName
+        - age
+        - gender
+        - email
+        - phone
+        - username
+        - password
+        - birthDate
+        - image
+        - bloodGroup
+        - height
+        - weight
+        - eyeColor
+        - hair
+        - ip
+        - address
+        - macAddress
+        - university
+        - bank
+        - company
+        - ein
+        - ssn
+        - userAgent
+        - crypto
+        - role
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        firstName:
+          type: string
+        lastName:
+          type: string
+        maidenName:
+          type: string
+          description: Can be an empty string
+        age:
+          type: integer
+          minimum: 0
+        gender:
+          type: string
+          enum: [female, male]
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        username:
+          type: string
+          minLength: 1
+        password:
+          type: string
+        birthDate:
+          type: string
+          description: YYYY-M-D without zero padding (e.g. 1996-5-30), so not format date
+          pattern: '^\d{4}-\d{1,2}-\d{1,2}$'
+        image:
+          type: string
+          format: uri
+        bloodGroup:
+          type: string
+          enum: [A+, A-, B+, B-, AB+, AB-, O+, O-]
+        height:
+          type: number
+        weight:
+          type: number
+        eyeColor:
+          type: string
+        hair:
+          type: object
+          required: [color, type]
+          properties:
+            color:
+              type: string
+            type:
+              type: string
+        ip:
+          type: string
+          format: ipv4
+        address: &address
+          type: object
+          required: [address, city, state, stateCode, postalCode, coordinates, country]
+          properties:
+            address:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            stateCode:
+              type: string
+            postalCode:
+              type: string
+            coordinates:
+              type: object
+              required: [lat, lng]
+              properties:
+                lat:
+                  type: number
+                  minimum: -90
+                  maximum: 90
+                lng:
+                  type: number
+                  minimum: -180
+                  maximum: 180
+            country:
+              type: string
+        macAddress:
+          type: string
+          description: Octets without leading zeros (e.g. 59:e:9e:e3:29:da)
+          pattern: '^([0-9a-f]{1,2}:){5}[0-9a-f]{1,2}$'
+        university:
+          type: string
+        bank:
+          type: object
+          required: [cardExpire, cardNumber, cardType, currency, iban]
+          properties:
+            cardExpire:
+              type: string
+              pattern: '^\d{2}/\d{2}$'
+            cardNumber:
+              type: string
+            cardType:
+              type: string
+            currency:
+              type: string
+            iban:
+              type: string
+        company:
+          type: object
+          required: [department, name, title, address]
+          properties:
+            department:
+              type: string
+            name:
+              type: string
+            title:
+              type: string
+            address: *address
+        ein:
+          type: string
+        ssn:
+          type: string
+        userAgent:
+          type: string
+        crypto:
+          type: object
+          required: [coin, wallet, network]
+          properties:
+            coin:
+              type: string
+            wallet:
+              type: string
+            network:
+              type: string
+        role:
+          type: string
+          enum: [admin, moderator, user]
+  total:
+    type: integer
+    minimum: 0
+  skip:
+    type: integer
+    minimum: 0
+  limit:
+    type: integer
+    minimum: 0
+additionalProperties: false

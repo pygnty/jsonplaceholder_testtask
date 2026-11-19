@@ -1,0 +1,37 @@
+type: object
+required: [accessToken, refreshToken, id, username, email, firstName, lastName, gender, image]
+properties:
+  accessToken:
+    type: string
+    description: JWT
+    pattern: '^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$'
+  refreshToken:
+    type: string
+    description: JWT
+    pattern: '^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$'
+  id:
+    type: integer
+    minimum: 1
+    example: 1
+  username:
+    type: string
+    minLength: 1
+    example: emilys
+  email:
+    type: string
+    format: email
+    example: emily.johnson@x.dummyjson.com
+  firstName:
+    type: string
+    example: Emily
+  lastName:
+    type: string
+    example: Johnson
+  gender:
+    type: string
+    enum: [female, male]
+  image:
+    type: string
+    format: uri
+    example: https://dummyjson.com/icon/emilys/128
+additionalProperties: false
